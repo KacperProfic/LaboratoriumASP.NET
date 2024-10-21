@@ -1,0 +1,27 @@
+
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col-6">
+            <h2>Obliczanie wieku</h2>
+            <form action="Result" method="POST">
+                <div class="mb-3">
+                    <label class="form-label" for="name">Imię</label>
+                    <input class="form-control" type="text" name="Name" id="name" required />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="birthDate">Data Urodzenia</label>
+                    <input class="form-control" type="date" name="BirthDate" id="birthDate" required />
+                </div>
+                <div class="mb-3">
+                    <button class="btn btn-primary" type="submit">Wyślij</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

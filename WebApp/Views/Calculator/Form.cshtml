@@ -1,0 +1,38 @@
+
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col-6">
+            <h2>Kalkulator</h2>
+            <form action="Result" method="POST">
+                <div class="mb-3">
+                    <label class="form-label" for="x">Liczba 1</label>
+                    <input class="form-control" type="number" name="X" step="0.00001" id="x"/>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="operator">Operator</label>
+                    <select name="Operator">
+                        <option value="Add">+</option>
+                        <option value="Sub">&minus;</option>
+                        <option value="Mul">&times;</option>
+                        <option value="Div">&divide;</option>
+                        <option value="Pow">Pow</option>
+                        <option value="Sin">Sin</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="y">Liczba 2</label>
+                    <input class="form-control" type="number" name="Y" step="0.00001" id="y"/>
+                </div>
+                <div class="mb-3">
+                    <button class="btn btn-primary" type="submit">Oblicz</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
