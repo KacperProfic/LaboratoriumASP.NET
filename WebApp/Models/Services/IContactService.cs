@@ -11,4 +11,6 @@ public interface IContactService
     List<ContactModel> GetAll();
     
     ContactModel? GetById(int id);
+
+    List<OrganizationEntity> GetOrganzations();
 }
