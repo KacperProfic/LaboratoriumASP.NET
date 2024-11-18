@@ -40,6 +40,7 @@
         <select class="form-control" asp-for="Category" asp-items="@Html.GetEnumSelectList<Category>()"></select>
         <span class="text-danger" asp-validation-for="Category"></span>
     </div>
+   
 
     <button class="btn btn-outline-primary" type="submit">Zapisz</button>
 </form>

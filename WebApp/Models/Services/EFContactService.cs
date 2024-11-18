@@ -16,11 +16,29 @@ public class EFContactService : IContactService
         _context.SaveChanges();
     }
 
-    public void Update(ContactModel model)
-    {
-        _context.Contacts.Update(ContactMapper.ToEntity(model));
-        _context.SaveChanges();
-    }
+    //public void Update(ContactModel model)
+ //   {
+   //     _context.Contacts.Update(ContactMapper.ToEntity(model));
+  //      _context.SaveChanges();
+  //  }
+  public void Update(ContactModel model)
+  {
+      var entity = _context.Contacts.Find(model.Id);
+      if (entity != null)
+      {
+          
+          entity.FirstName = model.FirstName;
+          entity.LastName = model.LastName;
+          
+
+          _context.SaveChanges();
+      }
+      else
+      {
+          
+          throw new Exception("Contact not found");
+      }
+  }
 
     public void Delete(int id)
     {

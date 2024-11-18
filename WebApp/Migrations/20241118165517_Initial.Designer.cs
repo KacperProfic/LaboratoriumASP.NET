@@ -11,8 +11,8 @@ using WebApp.Models;
 namespace WebApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241112163555_Organizations")]
-    partial class Organizations
+    [Migration("20241118165517_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -65,7 +65,7 @@ namespace WebApp.Migrations
                         {
                             Id = 1,
                             BirthDate = new DateOnly(2003, 11, 10),
-                            Created = new DateTime(2024, 11, 12, 17, 35, 55, 316, DateTimeKind.Local).AddTicks(1827),
+                            Created = new DateTime(2024, 11, 18, 17, 55, 15, 197, DateTimeKind.Local).AddTicks(1993),
                             Email = "kacper@gmail.com",
                             FirstName = "Kacper",
                             LastName = "Dąbrowski",
@@ -76,7 +76,7 @@ namespace WebApp.Migrations
                         {
                             Id = 2,
                             BirthDate = new DateOnly(2002, 8, 21),
-                            Created = new DateTime(2024, 11, 12, 17, 35, 55, 316, DateTimeKind.Local).AddTicks(1878),
+                            Created = new DateTime(2024, 11, 18, 17, 55, 15, 197, DateTimeKind.Local).AddTicks(2033),
                             Email = "jan@gmail.com",
                             FirstName = "Jan",
                             LastName = "Kowalski",

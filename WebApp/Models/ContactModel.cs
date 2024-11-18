@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using WebApp.Migrations;
+
 
 namespace WebApp.Models;
 
@@ -49,5 +49,5 @@ public class ContactModel
     public OrganizationEntity? Organization { get; set; }
     
     
-    [ValidateNever] public List<SelectListItem> Organizations { get; set; }
+    [ValidateNever] public List<SelectListItem>? Organizations { get; set; }
 }

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace WebApp.Migrations
 {
     /// <inheritdoc />
-    public partial class Organizations : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -68,8 +68,8 @@ namespace WebApp.Migrations
                 columns: new[] { "Id", "birth", "Created", "Email", "FirstName", "LastName", "OrganizationId", "PhoneNumber" },
                 values: new object[,]
                 {
-                    { 1, new DateOnly(2003, 11, 10), new DateTime(2024, 11, 12, 17, 35, 55, 316, DateTimeKind.Local).AddTicks(1827), "kacper@gmail.com", "Kacper", "Dąbrowski", 101, "888123188" },
-                    { 2, new DateOnly(2002, 8, 21), new DateTime(2024, 11, 12, 17, 35, 55, 316, DateTimeKind.Local).AddTicks(1878), "jan@gmail.com", "Jan", "Kowalski", 101, "111999777" }
+                    { 1, new DateOnly(2003, 11, 10), new DateTime(2024, 11, 18, 17, 55, 15, 197, DateTimeKind.Local).AddTicks(1993), "kacper@gmail.com", "Kacper", "Dąbrowski", 101, "888123188" },
+                    { 2, new DateOnly(2002, 8, 21), new DateTime(2024, 11, 18, 17, 55, 15, 197, DateTimeKind.Local).AddTicks(2033), "jan@gmail.com", "Jan", "Kowalski", 101, "111999777" }
                 });
 
             migrationBuilder.CreateIndex(

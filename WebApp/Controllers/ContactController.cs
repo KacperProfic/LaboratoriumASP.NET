@@ -37,7 +37,7 @@ public class ContactController : Controller
                 Value = e.Id.ToString()
             }).ToList();
         
-        return View();
+        return View(model);
     }
 
     // POST: ContactController/Create
@@ -46,7 +46,7 @@ public class ContactController : Controller
     {
         if (!ModelState.IsValid)
         {
-            return View();
+            return View(model);
         }
         _contactService.Add(model);
         return RedirectToAction(nameof(Index));
