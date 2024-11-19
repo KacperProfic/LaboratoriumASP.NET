@@ -1,48 +1,43 @@
-@model IEnumerable<WebApp.Models.OrganizationEntity>
+@model IEnumerable<WebApp.Models.OrganizationModel>
 
 @{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Organizacje";
+    Layout = "_Layout";
 }
 
-<h1>Index</h1>
+<h2>Organizacje</h2>
+<a class="btn btn-primary" asp-action="Create">Dodaj organizacje</a>
+<h4>Lista</h4>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
+@if (Model.Any())
+{
+    <table class="table">
+        <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NIP)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.REGON)
-            </th>
-            <th></th>
+            <th>@Html.DisplayNameFor(model => model.First().Name)</th>
+            <th>@Html.DisplayNameFor(model => model.First().NIP)</th>
+            <th>@Html.DisplayNameFor(model => model.First().REGON)</th>
+            <th>Akcje</th>
         </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NIP)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.REGON)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
+        </thead>
+        <tbody>
+        @foreach (var organization in Model)
+        {
+            <tr>
+                <td>@organization.Name</td>
+                <td>@organization.NIP</td>
+                <td>@organization.REGON</td>
+                <td>
+                    <a class="btn btn-success" asp-action="Edit" asp-route-id="@organization.Id">Edycja</a>
+                    <a class="btn btn-info" asp-action="Details" asp-route-id="@organization.Id">Szczegóły</a>
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@organization.Id">Usuń</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
 }
-    </tbody>
-</table>
+else
+{
+    <h3 class="text-danger">brak dostępnych organizacji</h3>
+}

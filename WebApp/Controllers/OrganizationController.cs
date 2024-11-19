@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WebApp.Models;
 
@@ -21,7 +20,9 @@ namespace WebApp.Controllers
         // GET: Organization
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Organizations.ToListAsync());
+            var organizations = await _context.Organizations.ToListAsync();
+            var organizationModels = organizations.Select(OrganizationMapper.FromEntity).ToList();
+            return View(organizationModels);
         }
 
         // GET: Organization/Details/5
@@ -39,7 +40,8 @@ namespace WebApp.Controllers
                 return NotFound();
             }
 
-            return View(organizationEntity);
+            var organizationModel = OrganizationMapper.FromEntity(organizationEntity);
+            return View(organizationModel);
         }
 
         // GET: Organization/Create
@@ -49,19 +51,19 @@ namespace WebApp.Controllers
         }
 
         // POST: Organization/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,NIP,REGON")] OrganizationEntity organizationEntity)
+        public async Task<IActionResult> Create([Bind("Id,Name,NIP,REGON, Address")] OrganizationModel organizationModel)
         {
             if (ModelState.IsValid)
             {
+                var organizationEntity = OrganizationMapper.ToEntity(organizationModel);
                 _context.Add(organizationEntity);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(organizationEntity);
+            return View(organizationModel);
+            
         }
 
         // GET: Organization/Edit/5
@@ -77,17 +79,17 @@ namespace WebApp.Controllers
             {
                 return NotFound();
             }
-            return View(organizationEntity);
+
+            var organizationModel = OrganizationMapper.FromEntity(organizationEntity);
+            return View(organizationModel);
         }
 
         // POST: Organization/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,NIP,REGON")] OrganizationEntity organizationEntity)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,NIP,REGON, Address")] OrganizationModel organizationModel)
         {
-            if (id != organizationEntity.Id)
+            if (id != organizationModel.Id)
             {
                 return NotFound();
             }
@@ -96,12 +98,13 @@ namespace WebApp.Controllers
             {
                 try
                 {
+                    var organizationEntity = OrganizationMapper.ToEntity(organizationModel);
                     _context.Update(organizationEntity);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!OrganizationEntityExists(organizationEntity.Id))
+                    if (!OrganizationEntityExists(organizationModel.Id))
                     {
                         return NotFound();
                     }
@@ -112,7 +115,7 @@ namespace WebApp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(organizationEntity);
+            return View(organizationModel);
         }
 
         // GET: Organization/Delete/5
@@ -130,7 +133,8 @@ namespace WebApp.Controllers
                 return NotFound();
             }
 
-            return View(organizationEntity);
+            var organizationModel = OrganizationMapper.FromEntity(organizationEntity);
+            return View(organizationModel);
         }
 
         // POST: Organization/Delete/5
@@ -142,9 +146,8 @@ namespace WebApp.Controllers
             if (organizationEntity != null)
             {
                 _context.Organizations.Remove(organizationEntity);
+                await _context.SaveChangesAsync();
             }
-
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 

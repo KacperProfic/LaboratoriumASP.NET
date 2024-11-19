@@ -1,37 +1,25 @@
-@model WebApp.Models.OrganizationEntity
+@model WebApp.Models.OrganizationModel
 
 @{
-    ViewData["Title"] = "Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Szczegóły";
+    Layout = "_Layout";
 }
 
-<h1>Details</h1>
-
-<div>
-    <h4>OrganizationEntity</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NIP)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NIP)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.REGON)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.REGON)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+<h2>Szczegoły</h2>
+<div class="card">
+    <div class="card-header">
+        Szczegóły
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">@Model.Name</h5>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">NIP: @Model.NIP</li>
+        <li class="list-group-item">REGON: @Model.REGON</li>
+        <li class="list-group-item">Miasto: @Model.Address?.City</li>
+        <li class="list-group-item">Ulica: @Model.Address?.Street</li>
+    </ul>
+    <div class="card-body">
+        <a class="btn btn-primary" asp-action="Index">Powrót do listy</a>
+    </div>
 </div>

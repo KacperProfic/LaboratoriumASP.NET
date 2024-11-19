@@ -13,6 +13,7 @@ public class Program
         // Add services to the container.
         builder.Services.AddControllersWithViews();
         builder.Services.AddTransient<IContactService, EFContactService>();
+        builder.Services.AddTransient<IOrganizationService, EFOrganizationService>();
         builder.Services.AddDbContext<AppDbContext>();
         var app = builder.Build();
 

@@ -51,13 +51,18 @@ public class AppDbContext : DbContext
             .HasData(
                 new
                 {
-                   City="Kraków", Street="św. Filipa 12", OrganizationEntityId = 101 
+                    City = "Kraków", Street = "św. Filipa 12", OrganizationEntityId = 101
                 },
-        new
-            {
-                City="Wrocław", Street="św. Filipa 15", OrganizationEntityId = 102
-            }
-            );
+                new
+                {
+                    City = "Wrocław", Street = "św. Filipa 15", OrganizationEntityId = 102
+                }
+            )
+            ;
+        modelBuilder.Entity<OrganizationEntity>()
+            .OwnsOne(o => o.Address)
+            .Property(a => a.City)
+            .IsRequired();
             
         modelBuilder.Entity<ContactEntity>().HasData(
             new ContactEntity()
